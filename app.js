@@ -1,6 +1,3 @@
-// Import Axios (Add this to your HTML)
-// <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 document.addEventListener("DOMContentLoaded", () => {
   // DOM Elements
   const userTableBody = document
@@ -113,6 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Display Users
   function displayUsers(usersToDisplay) {
     userTableBody.innerHTML = "";
+    // Sort users by ID in ascending order
+    usersToDisplay.sort((a, b) => a.id - b.id);
     usersToDisplay.forEach((user) => {
       const row = document.createElement("tr");
       row.innerHTML = `
@@ -164,8 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add the new user to our local array with a new ID
       newUser.id =
         users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1;
-      users.unshift(newUser);
-      currentPage = 1; // Reset to first page
+      users.push(newUser); // Add at the end
       displayUsers(getPaginatedUsers(currentPage));
       setupPagination();
       showSuccess("User added successfully");
