@@ -10,7 +10,6 @@
    ```
    cd azacus-manideep
    ```
-   ```
 3. Open `index.html` in your preferred web browser.
 
 ## Assumptions Made
