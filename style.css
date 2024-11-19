@@ -1,4 +1,16 @@
-/* Reset and base styles */
+/* Modern CSS Reset and Variables */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --danger-color: #e74c3c;
+    --warning-color: #f39c12;
+    --text-color: #2c3e50;
+    --background-color: #f5f7fb;
+    --border-color: #e1e5ee;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,42 +20,44 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background-color: #f5f7fb;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
+/* Layout and Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Header styles */
+/* Header Styles */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
     padding: 20px 0;
-    border-bottom: 2px solid #e1e5ee;
+    border-bottom: 2px solid var(--border-color);
 }
 
 h1 {
-    color: #2c3e50;
+    color: var(--text-color);
     font-size: 24px;
 }
 
 h1 i {
     margin-right: 10px;
-    color: #3498db;
+    color: var(--primary-color);
 }
 
-/* Table styles */
+/* Table Styles with Responsive Design */
 .table-container {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 table {
@@ -55,32 +69,115 @@ th,
 td {
     padding: 12px 15px;
     text-align: left;
-    border-bottom: 1px solid #e1e5ee;
+    border-bottom: 1px solid var(--border-color);
 }
 
 th {
     background-color: #f8f9fa;
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--text-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 tr:hover {
     background-color: #f8f9fa;
+    transition: var(--transition);
 }
 
-/* Button styles */
-.btn-primary {
-    background-color: #3498db;
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: var(--primary-color);
     color: white;
-    border: none;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination .current-page {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Form Validation Styles */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form-group .error-message {
+    color: var(--danger-color);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.error input {
+    border-color: var(--danger-color);
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+/* Button Styles */
+.btn {
     padding: 10px 20px;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    transition: background-color 0.3s;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .btn-primary:hover {
@@ -90,21 +187,22 @@ tr:hover {
 .btn-secondary {
     background-color: #95a5a6;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .btn-secondary:hover {
     background-color: #7f8c8d;
 }
 
-/* Modal styles */
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -123,101 +221,103 @@ tr:hover {
     margin: 50px auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .modal-header {
     padding: 20px;
-    border-bottom: 1px solid #e1e5ee;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.modal-header h2 {
-    font-size: 20px;
-    color: #2c3e50;
-}
-
-.btn-close {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #95a5a6;
-}
-
-.btn-close:hover {
-    color: #7f8c8d;
-}
-
-/* Form styles */
-form {
+/* Loading State Styles */
+.loading-spinner {
+    display: none;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
-.form-group {
-    margin-bottom: 20px;
+.loading-spinner::after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-label {
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Toast Notification Styles */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+.toast.success {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.toast.error {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Infinite Scroll Indicator */
+.infinite-scroll-trigger {
+    height: 20px;
+    margin: 20px 0;
+    text-align: center;
+    display: none;
+}
+
+.infinite-scroll-trigger.visible {
     display: block;
-    margin-bottom: 5px;
-    color: #2c3e50;
-    font-weight: 500;
 }
 
-input[type="text"],
-input[type="email"] {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #e1e5ee;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-.form-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    margin-top: 20px;
-}
-
-/* Action buttons in table */
-td button {
-    padding: 6px 12px;
-    margin: 0 4px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-td button:first-child {
-    background-color: #f39c12;
-    color: white;
-}
-
-td button:last-child {
-    background-color: #e74c3c;
-    color: white;
-}
-
-td button:first-child:hover {
-    background-color: #d68910;
-}
-
-td button:last-child:hover {
-    background-color: #c0392b;
-}
-
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 10px;
@@ -229,12 +329,50 @@ td button:last-child:hover {
         text-align: center;
     }
 
+    .table-container {
+        overflow-x: auto;
+    }
+
     th,
     td {
+        min-width: 120px;
         padding: 8px;
     }
 
-    .table-container {
-        overflow-x: auto;
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+
+/* Print Styles */
+@media print {
+
+    .btn,
+    .modal,
+    .pagination {
+        display: none !important;
+    }
+
+    .container {
+        padding: 0;
+    }
+
+    table {
+        border: 1px solid #ddd;
     }
 }
