@@ -16,6 +16,8 @@ Develop a simple web application where users can view, add, edit, and delete use
    ```
 3. Open `index.html` in your preferred web browser.
 
+4. Please find the deloyed link here :) https://azacus-manideep.netlify.app/
+
 ## Assumptions Made
 
 - The application uses JSONPlaceholder as the mock backend API.
